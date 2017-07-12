@@ -1,0 +1,33 @@
+<!-- FIXME: move to templatre folder -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Journals notification</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>
+    Hello <span th:text="${user.loginName}">XXXX</span>
+
+</p>
+<p>
+    Below you have the jurnals published in the last 24 hours.
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Publisher</th>
+        <th>Category</th>
+    </tr>
+    <tr th:each="journal : ${journals}">
+        <td th:text="${journal.name}">Onions</td>
+        <td th:text="${journal.publisher}">Onions</td>
+        <td th:text="${journal.category}">Onions</td>
+    </tr>
+</table>
+</p>
+<p>
+    Regards, <br />
+    <em>The Crossover Team</em>
+</p>
+</body>
+</html>
