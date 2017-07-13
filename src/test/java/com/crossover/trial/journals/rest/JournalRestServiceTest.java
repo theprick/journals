@@ -60,13 +60,13 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 .andExpect(status().is(HttpStatus.OK.value()))
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].name", is("Test Journal1")))
+                .andExpect(jsonPath("$[0].name", is("Medicine")))
                 .andExpect(jsonPath("$[0].publisher.id", is(1)))
                 .andExpect(jsonPath("$[0].publisher.name", is("Test Publisher1")))
                 .andExpect(jsonPath("$[0].category.id", is(1)))
                 .andExpect(jsonPath("$[0].category.name", is("immunology")))
                 .andExpect(jsonPath("$[1].id", is(2)))
-                .andExpect(jsonPath("$[1].name", is("Test Journal2")))
+                .andExpect(jsonPath("$[1].name", is("Test Journal")))
                 .andExpect(jsonPath("$[1].publisher.id", is(1)))
                 .andExpect(jsonPath("$[1].publisher.name", is("Test Publisher1")))
                 .andExpect(jsonPath("$[1].category.id", is(2)))
@@ -87,7 +87,7 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
         //FIXME: Implement test
     }
 
-    //TODO this should work @WithUserDetails("user1") instead of manually creating the CurrentUser object
+    //TODO this should work @WithUserDetails("login") instead of manually creating the CurrentUser object
     @Test
     public void testSubscribe() throws Exception {
         CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITHOUT_SUBSCRIPTIONS);

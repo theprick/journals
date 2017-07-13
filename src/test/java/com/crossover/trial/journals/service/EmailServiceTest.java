@@ -4,13 +4,13 @@ import com.crossover.trial.journals.IntegrationTestBase;
 import com.crossover.trial.journals.MvcIntegrationTestBase;
 import org.junit.Test;
 
-public class EmailServiceTest extends IntegrationTestBase {
+public class EmailServiceTest {
 
 //    @Autowired
 //    private EmailService emailService;
 
-    @Test
-    public void testSendNewJurnalPublishedEmail() {
+//    @Test
+//    public void testSendNewJurnalPublishedEmail() {
 //        UserDTO user = createUser();
 //        JournalDTO journal = createJournal();
 //        emailService.sendNewJurnalPublishedEmail(user, journal);
@@ -40,4 +40,3 @@ public class EmailServiceTest extends IntegrationTestBase {
 //        user.setLoginName("Duke");
 //        return user;
 //    }
-}

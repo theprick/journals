@@ -18,7 +18,7 @@ public class PublisherControllerTest extends MvcIntegrationTestBase {
     @Test
     public void testHandleFileUpload() throws Exception {
         CurrentUser currentUser = getCurrentUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS1);
-        MockMultipartFile mockMultipartFile = new MockMultipartFile("test", FILENAME,
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("test.txt", FILENAME,
                 "text/plain", this.getClass().getClassLoader().getResourceAsStream(FILENAME));
 
         mockMvc.perform(fileUpload("/publisher/publish")

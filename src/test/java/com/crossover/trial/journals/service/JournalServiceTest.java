@@ -97,7 +97,7 @@ public class JournalServiceTest extends IntegrationTestBase {
 			fail(e.getMessage());
 		}
 
-		List<Journal> journals = journalService.listAll(getUser("user1"));
+		List<Journal> journals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
 		assertEquals(2, journals.size());
 
 		journals = journalService.publisherList(p.get());
@@ -140,7 +140,7 @@ public class JournalServiceTest extends IntegrationTestBase {
 		Optional<User> user = userService.getUserByLoginName(name);
 		if (!user.isPresent()) {
 			//wrong message here
-			fail("user1 doesn't exist");
+			fail(name + " doesn't exist");
 		}
 		return user.get();
 	}

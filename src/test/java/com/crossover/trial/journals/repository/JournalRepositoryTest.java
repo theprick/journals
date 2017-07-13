@@ -23,16 +23,15 @@ public class JournalRepositoryTest extends IntegrationTestBase {
 
     @Test
     public void testFindByPublicationDate() {
-        //FIXME make test better
-        DateTime now = new DateTime();
-        //FIXME implement method journalRepository.findByPublicationDate
-//        Collection<Journal> journals = journalRepository.findByPublicationDate(
-//                now.minusHours(24).toDate(), now.toDate());
+        DateTime from = new DateTime(2017, 7, 11, 21, 59, 59);
+        DateTime to = new DateTime(2017, 7, 12, 21, 59, 59);
 
-//        assertNotNull(journals);
-//        assertEquals(3, journals.size());
+        Collection<Journal> journals = journalRepository.findByPublicationDate(from.toDate(), to.toDate());
+        Assert.assertNotNull(journals);
+        Assert.assertEquals(1, journals.size());
     }
 
+    @Test
     public void testFindByCategoryIds() {
         List<Journal> journals =
                 journalRepository.findByCategoryIdIn(Collections.singletonList(CATEGORY_ID_ENDOCRINOLOGY));
@@ -43,22 +42,20 @@ public class JournalRepositoryTest extends IntegrationTestBase {
         Assert.assertEquals(CATEGORY_ID_ENDOCRINOLOGY, journals.get(0).getCategory().getId());
     }
 
+    @Test
     public void testFindByPublisher() {
         Optional<Publisher> publisher = publisherRepository
                 .findByUser(userRepository.findByLoginName(PUBLISHER_LOGIN_WITH_PUBLICATIONS1));
         Assert.assertTrue(publisher.isPresent());
-        Collection<Journal> journals = journalRepository.findByPublisher(publisher.get());
+        List<Journal> journals = journalRepository.findByPublisher(publisher.get());
         Assert.assertEquals(2, journals.size());
         Assert.assertEquals("Medicine", journals.get(0).getName());
         Assert.assertEquals("8305d848-88d2-4cbd-a33b-5c3dcc548056", journals.get(0).getUuid());
         Assert.assertEquals("Test Publisher1", journals.get(0).getPublisher().getName());
         Assert.assertEquals(CATEGORY_ID_ENDOCRINOLOGY, journals.get(0).getCategory().getId());
-        Assert.assertEquals("Medicine", journals.get(1).getName());
-        Assert.assertEquals("8305d848-88d2-4cbd-a33b-5c3dcc548056", journals.get(0).getUuid());
-        Assert.assertEquals("Test Publisher1", journals.get(0).getPublisher().getName());
-        Assert.assertEquals(CATEGORY_ID_ENDOCRINOLOGY, journals.get(0).getCategory().getId());
-
-        //FIXME Implement test
+        Assert.assertEquals("Test Journal", journals.get(1).getName());
+        Assert.assertEquals("09628d25-ea42-490e-965d-cd4ffb6d4e9d", journals.get(1).getUuid());
+        Assert.assertEquals("Test Publisher1", journals.get(1).getPublisher().getName());
+        Assert.assertEquals(CATEGORY_ID_MICROBIOLOGY, journals.get(1).getCategory().getId());
     }
-
 }

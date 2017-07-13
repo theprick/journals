@@ -2,8 +2,10 @@ package com.crossover.trial.journals.rest;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.service.JournalService;
@@ -52,30 +54,25 @@ public class JournalRestService {
 	public List<Journal> publishedList(@AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
 		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
-		return journalService.publisherList(publisher.get());
+		if(publisher.isPresent()) {
+            return journalService.publisherList(publisher.get());
+        } else {
+		    return Collections.emptyList();
+        }
 	}
 
 	@RequestMapping(value = "/unPublish/{id}", method = RequestMethod.DELETE)
 	public void unPublish(@PathVariable("id") Long id, @AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
 		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
-		journalService.unPublish(publisher.get(), id);
+        publisher.ifPresent(publisher1 -> journalService.unPublish(publisher1, id));
 	}
 
 	@RequestMapping(value = "/subscriptions")
 	public List<SubscriptionDTO> getUserSubscriptions(@AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-		User persistedUser = userService.findById(activeUser.getId());
-		List<Subscription> subscriptions = persistedUser.getSubscriptions();
-		List<Category> categories = categoryRepository.findAll();
-		List<SubscriptionDTO> subscriptionDTOs = new ArrayList<>(categories.size());
-		categories.stream().forEach(c -> {
-			SubscriptionDTO subscr = new SubscriptionDTO(c);
-			Optional<Subscription> subscription = subscriptions.stream().filter(s -> s.getCategory().getId().equals(c.getId())).findFirst();
-			subscr.setActive(subscription.isPresent());
-			subscriptionDTOs.add(subscr);
-		});
-		return subscriptionDTOs;
+		List<Subscription> subscriptions = activeUser.getUser().getSubscriptions();
+		return subscriptions.stream().map( s -> new SubscriptionDTO(s.getCategory())).collect(Collectors.toList());
 	}
 
 	@RequestMapping(value = "/subscribe/{categoryId}", method = RequestMethod.POST)

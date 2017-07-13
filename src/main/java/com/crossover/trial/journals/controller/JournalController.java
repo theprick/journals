@@ -41,6 +41,9 @@ public class JournalController {
 	public ResponseEntity renderDocument(@AuthenticationPrincipal Principal principal, @PathVariable("id") Long id)
 			throws IOException {
 		Journal journal = journalRepository.findOne(id);
+		if(journal == null) {
+			return ResponseEntity.notFound().build();
+		}
 		Category category = journal.getCategory();
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
 		User user = userRepository.findOne(activeUser.getUser().getId());
