@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.service.JournalService;
+import com.crossover.trial.journals.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -68,7 +69,8 @@ public class JournalRestService {
 	public void unPublish(@PathVariable("id") Long id, @AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
 		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
-        publisher.ifPresent(publisher1 -> journalService.unPublish(publisher1, id));
+
+		publisher.ifPresent(publisher1 -> journalService.unPublish(publisher1, id));
 	}
 
 	@RequestMapping(value = "/subscriptions")

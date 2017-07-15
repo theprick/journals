@@ -139,15 +139,11 @@ public class JournalServiceTest extends IntegrationTestBase {
 
 		List<Journal> journals = journalService.publisherList(p.get());
 		assertEquals(2, journals.size());
-		assertTrue(journals.stream().anyMatch(j -> j.getId().equals(JOURNAL_ID_MEDICINE) && j.getName().equals("Medicine")));
 
-		journalService.unPublish(p.get(), JOURNAL_ID_MEDICINE);
+		journalService.unPublish(p.get(), JOURNAL_ID_TEST_JOURNAL);
 
 		journals = journalService.publisherList(p.get());
 		assertEquals(1, journals.size());
-		assertFalse(journals.stream().anyMatch(j -> j.getId().equals(JOURNAL_ID_MEDICINE) && j.getName().equals("Medicine")));
-
-		journals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
-		assertEquals(0, journals.size());
+		assertFalse(journals.stream().anyMatch(j -> j.getId().equals(JOURNAL_ID_TEST_JOURNAL) && j.getName().equals("Medicine")));
 	}
 }

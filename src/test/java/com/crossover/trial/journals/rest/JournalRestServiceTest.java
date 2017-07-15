@@ -86,18 +86,18 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
     public void testUnPublish() throws Exception {
         CurrentUser currentUser = getCurrentUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS1);
 
-        Journal journal = journalRepository.findOne(JOURNAL_ID_MEDICINE);
+        Journal journal = journalRepository.findOne(JOURNAL_ID_TEST_JOURNAL);
         Assert.assertNotNull(journal);
         Assert.assertEquals(PUBLISHER_LOGIN_WITH_PUBLICATIONS1, journal.getPublisher().getUser().getLoginName());
 
-        mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_MEDICINE)
+        mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_TEST_JOURNAL)
                 .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
                 .andExpect(status().is(HttpStatus.OK.value()));
 
-        Assert.assertNull(journalRepository.findOne(JOURNAL_ID_MEDICINE));
+        Assert.assertNull(journalRepository.findOne(JOURNAL_ID_TEST_JOURNAL));
     }
 
-    @Test(expected = ServiceException.class)
+    @Test
     public void testUnPublishOtherPublisher() throws Exception {
         CurrentUser currentUser = getCurrentUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS2);
 
@@ -105,13 +105,28 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
         Assert.assertNotNull(journal);
         Assert.assertEquals(PUBLISHER_LOGIN_WITH_PUBLICATIONS1, journal.getPublisher().getUser().getLoginName());
 
-        mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_MEDICINE)
-                .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")));
-
+        try {
+            mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_MEDICINE)
+                    .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")));
+            Assert.fail("A ServiceException should have been thrown");
+        } catch(Exception ex) {
+            checkServiceException(ex, "Journal cannot be removed");
+        }
         Assert.assertNotNull(journalRepository.findOne(JOURNAL_ID_MEDICINE));
     }
 
     //TODO this should work @WithUserDetails("login") instead of manually creating the CurrentUser object
+    @Test
+    public void testSubscribeInvalidCategory() throws Exception {
+        CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITHOUT_SUBSCRIPTIONS);
+        try {
+            mockMvc.perform(post("/rest/journals/subscribe/" + INVALID_CATEGORY_ID)
+                    .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")));
+        } catch (Exception ex) {
+            checkServiceException(ex, "Category not found");
+        }
+    }
+
     @Test
     public void testSubscribe() throws Exception {
         CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITHOUT_SUBSCRIPTIONS);

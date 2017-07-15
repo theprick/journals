@@ -2,6 +2,7 @@ package com.crossover.trial.journals;
 
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.service.CurrentUser;
+import com.crossover.trial.journals.service.ServiceException;
 import com.crossover.trial.journals.service.UserService;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -36,5 +37,12 @@ public abstract class IntegrationTestBase implements TestConstants {
 
     protected CurrentUser getCurrentUser(String userLogin) {
         return new CurrentUser(getUser(userLogin));
+    }
+
+    protected void checkServiceException(Exception ex, String msg) {
+        Throwable serviceEx = ex.getCause();
+        Assert.assertNotNull(serviceEx);
+        Assert.assertTrue("ServiceException expected", serviceEx instanceof ServiceException);
+        Assert.assertEquals(msg, serviceEx.getMessage());
     }
 }
