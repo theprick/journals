@@ -44,6 +44,9 @@ public class JournalRestService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	/**
+	 * @return all the subscriptions of the user
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<Object> browse(@AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();

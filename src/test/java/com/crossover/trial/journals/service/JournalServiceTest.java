@@ -1,10 +1,7 @@
 package com.crossover.trial.journals.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.crossover.trial.journals.IntegrationTestBase;
@@ -12,8 +9,11 @@ import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.repository.PublisherRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.*;
 
 public class JournalServiceTest extends IntegrationTestBase {
 
@@ -87,6 +87,12 @@ public class JournalServiceTest extends IntegrationTestBase {
 	public void publishSuccess() {
 		User user = getUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS2);
 		Optional<Publisher> p = publisherRepository.findByUser(user);
+		Assert.assertTrue(p.isPresent());
+
+		List<Journal> userJournals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
+		assertEquals(1, userJournals.size());
+		List<Journal> publisherJournals = journalService.publisherList(p.get());
+		assertEquals(1, publisherJournals.size());
 
 		Journal journal = new Journal();
 		journal.setName(NEW_JOURNAL_NAME);
@@ -97,17 +103,18 @@ public class JournalServiceTest extends IntegrationTestBase {
 			fail(e.getMessage());
 		}
 
-		List<Journal> journals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
-		assertEquals(2, journals.size());
+		userJournals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
+		assertEquals(2, userJournals.size());
+		assertTrue(userJournals.stream().anyMatch(j -> j.getUuid().equals("SOME_EXTERNAL_ID") && j.getName().equals(NEW_JOURNAL_NAME)));
 
-		journals = journalService.publisherList(p.get());
-		assertEquals(2, journals.size());
-		assertEquals(new Long(3), journals.get(0).getId());
-		assertEquals(new Long(4), journals.get(1).getId());
-		assertEquals("Health", journals.get(0).getName());
-		assertEquals(NEW_JOURNAL_NAME, journals.get(1).getName());
-		journals.forEach(j -> assertNotNull(j.getPublishDate()));
-		journals.forEach(j -> assertEquals(new Long(2), j.getPublisher().getId()));
+		publisherJournals = journalService.publisherList(p.get());
+		assertEquals(2, publisherJournals.size());
+		assertTrue(publisherJournals.stream().anyMatch(j ->
+				j.getPublishDate() != null &&
+				j.getUuid().equals("SOME_EXTERNAL_ID") &&
+				j.getName().equals(NEW_JOURNAL_NAME) &&
+				j.getPublisher().getUser().getLoginName().equals(PUBLISHER_LOGIN_WITH_PUBLICATIONS2) &&
+				j.getCategory().getId().equals(CATEGORY_ID_ENDOCRINOLOGY)));
 	}
 
 	@Test(expected = ServiceException.class)
@@ -128,21 +135,19 @@ public class JournalServiceTest extends IntegrationTestBase {
 	public void unPublishSuccess() {
 		User user = getUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS1);
 		Optional<Publisher> p = publisherRepository.findByUser(user);
-		journalService.unPublish(p.get(), JOURNAL_ID_MEDICINE);
+		Assert.assertTrue(p.isPresent());
 
 		List<Journal> journals = journalService.publisherList(p.get());
+		assertEquals(2, journals.size());
+		assertTrue(journals.stream().anyMatch(j -> j.getId().equals(JOURNAL_ID_MEDICINE) && j.getName().equals("Medicine")));
+
+		journalService.unPublish(p.get(), JOURNAL_ID_MEDICINE);
+
+		journals = journalService.publisherList(p.get());
 		assertEquals(1, journals.size());
+		assertFalse(journals.stream().anyMatch(j -> j.getId().equals(JOURNAL_ID_MEDICINE) && j.getName().equals("Medicine")));
+
 		journals = journalService.listAll(getUser(USER_LOGIN_WITH_SUBSCRIPTIONS));
-		assertEquals(1, journals.size());
+		assertEquals(0, journals.size());
 	}
-
-	private User getUser(String name) {
-		Optional<User> user = userService.getUserByLoginName(name);
-		if (!user.isPresent()) {
-			//wrong message here
-			fail(name + " doesn't exist");
-		}
-		return user.get();
-	}
-
 }

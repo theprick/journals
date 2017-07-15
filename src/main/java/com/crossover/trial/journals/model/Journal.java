@@ -1,5 +1,7 @@
 package com.crossover.trial.journals.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,6 +22,7 @@ public class Journal {
 	@Column(nullable = false)
 	private String name;
 
+	@JsonFormat(pattern = "yyyy-MM-dd K:mm a")
 	@Column(nullable = false)
 	private Date publishDate;
 

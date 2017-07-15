@@ -1,12 +1,17 @@
 package com.crossover.trial.journals.rest;
 
 import com.crossover.trial.journals.MvcIntegrationTestBase;
+import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Subscription;
+import com.crossover.trial.journals.repository.JournalRepository;
+import com.crossover.trial.journals.repository.SubscriptionRepository;
 import com.crossover.trial.journals.service.CurrentUser;
+import com.crossover.trial.journals.service.ServiceException;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +20,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -22,34 +28,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JournalRestServiceTest extends MvcIntegrationTestBase {
 
-    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+    @Autowired
+    protected SubscriptionRepository subscriptionRepository;
+
+    @Autowired
+    protected JournalRepository journalRepository;
 
     @Test
     public void testBrowse() throws Exception {
-        CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITHOUT_SUBSCRIPTIONS);
+        CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITH_SUBSCRIPTIONS);
         mockMvc.perform(get("/rest/journals")
                 .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
                 .andExpect(status().is(HttpStatus.OK.value()))
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].name", is("Test Journal1")))
+                .andExpect(jsonPath("$[0].name", is("Medicine")))
+                //TODO check why this doesn't match
+//                .andExpect(jsonPath("$[0].publishDate", is("2017-07-11 9:59 PM")))
                 .andExpect(jsonPath("$[0].publisher.id", is(1)))
                 .andExpect(jsonPath("$[0].publisher.name", is("Test Publisher1")))
-                .andExpect(jsonPath("$[0].category.id", is(1)))
-                .andExpect(jsonPath("$[0].category.name", is("immunology")))
-                .andExpect(jsonPath("$[1].id", is(2)))
-                .andExpect(jsonPath("$[1].name", is("Test Journal2")))
-                .andExpect(jsonPath("$[1].publisher.id", is(1)))
-                .andExpect(jsonPath("$[1].publisher.name", is("Test Publisher1")))
-                .andExpect(jsonPath("$[1].category.id", is(2)))
-                .andExpect(jsonPath("$[1].category.name", is("pathology")))
-                .andExpect(jsonPath("$[2].id", is(3)))
-                .andExpect(jsonPath("$[2].name", is("Test Journal3")))
-                .andExpect(jsonPath("$[2].publisher.id", is(2)))
-                .andExpect(jsonPath("$[2].publisher.name", is("Test Publisher2")))
-                .andExpect(jsonPath("$[2].category.id", is(3)))
-                .andExpect(jsonPath("$[2].category.name", is("endocrinology")));
+                .andExpect(jsonPath("$[0].category.id", is(3)))
+                .andExpect(jsonPath("$[0].category.name", is("endocrinology")));
     }
 
     @Test
@@ -63,14 +62,14 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 .andExpect(jsonPath("$[0].name", is("Medicine")))
                 .andExpect(jsonPath("$[0].publisher.id", is(1)))
                 .andExpect(jsonPath("$[0].publisher.name", is("Test Publisher1")))
-                .andExpect(jsonPath("$[0].category.id", is(1)))
-                .andExpect(jsonPath("$[0].category.name", is("immunology")))
+                .andExpect(jsonPath("$[0].category.id", is(3)))
+                .andExpect(jsonPath("$[0].category.name", is("endocrinology")))
                 .andExpect(jsonPath("$[1].id", is(2)))
                 .andExpect(jsonPath("$[1].name", is("Test Journal")))
                 .andExpect(jsonPath("$[1].publisher.id", is(1)))
                 .andExpect(jsonPath("$[1].publisher.name", is("Test Publisher1")))
-                .andExpect(jsonPath("$[1].category.id", is(2)))
-                .andExpect(jsonPath("$[1].category.name", is("pathology")));
+                .andExpect(jsonPath("$[1].category.id", is(4)))
+                .andExpect(jsonPath("$[1].category.name", is("microbiology")));
     }
 
     @Test
@@ -83,8 +82,33 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 .andExpect(content().string("[]"));
     }
 
-    public void testUnPublish() {
-        //FIXME: Implement test
+    @Test
+    public void testUnPublish() throws Exception {
+        CurrentUser currentUser = getCurrentUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS1);
+
+        Journal journal = journalRepository.findOne(JOURNAL_ID_MEDICINE);
+        Assert.assertNotNull(journal);
+        Assert.assertEquals(PUBLISHER_LOGIN_WITH_PUBLICATIONS1, journal.getPublisher().getUser().getLoginName());
+
+        mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_MEDICINE)
+                .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
+                .andExpect(status().is(HttpStatus.OK.value()));
+
+        Assert.assertNull(journalRepository.findOne(JOURNAL_ID_MEDICINE));
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testUnPublishOtherPublisher() throws Exception {
+        CurrentUser currentUser = getCurrentUser(PUBLISHER_LOGIN_WITH_PUBLICATIONS2);
+
+        Journal journal = journalRepository.findOne(JOURNAL_ID_MEDICINE);
+        Assert.assertNotNull(journal);
+        Assert.assertEquals(PUBLISHER_LOGIN_WITH_PUBLICATIONS1, journal.getPublisher().getUser().getLoginName());
+
+        mockMvc.perform(delete("/rest/journals/unPublish/" + JOURNAL_ID_MEDICINE)
+                .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")));
+
+        Assert.assertNotNull(journalRepository.findOne(JOURNAL_ID_MEDICINE));
     }
 
     //TODO this should work @WithUserDetails("login") instead of manually creating the CurrentUser object
@@ -106,12 +130,20 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 subscriptions != null && subscriptions.size() == 1);
     }
 
-    public void testGetUserSubscriptions() {
-        //FIXME: Implement test
+    @Test
+    public void testGetUserSubscriptions() throws Exception{
+        CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITH_SUBSCRIPTIONS);
+        mockMvc.perform(get("/rest/journals/subscriptions")
+                .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
+                .andExpect(status().is(HttpStatus.OK.value()))
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$[0].id", is(3)))
+                .andExpect(jsonPath("$[0].name", is("endocrinology")));
+                //TODO check active field
     }
 
     @Test
-    public void testSubscriptionsEmpty() throws Exception{
+    public void testGetUserSubscriptionsEmpty() throws Exception{
         CurrentUser currentUser = getCurrentUser(USER_LOGIN_WITHOUT_SUBSCRIPTIONS);
         mockMvc.perform(get("/rest/journals/subscriptions")
                 .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))

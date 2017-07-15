@@ -3,11 +3,13 @@ package com.crossover.trial.journals.service;
 import com.crossover.trial.journals.IntegrationTestBase;
 import com.crossover.trial.journals.model.Role;
 import com.crossover.trial.journals.model.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
@@ -15,35 +17,23 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-//FIXME modify to integration
-@RunWith(MockitoJUnitRunner.class)
-public class CurrentUserDetailsServiceTest extends IntegrationTestBase{
+public class CurrentUserDetailsServiceTest extends IntegrationTestBase {
 
-    public static final String USER_EMAIL = "emailaddress";
-
-    @Mock
-    private UserService userService;
-
-    @InjectMocks
+    @Autowired
     private CurrentUserDetailsService currentUserDetailsService;
 
     @Test
     public void testLoadUserByUsername() {
-        User user = new User();
-        user.setId(1L);
-        user.setEnabled(true);
-        user.setLoginName("email");
-        user.setPwd("passwd");
-        user.setRole(Role.PUBLISHER);
-        when(userService.getUserByLoginName(USER_EMAIL)).thenReturn(Optional.of(user));
-        CurrentUser currentUser = currentUserDetailsService.loadUserByUsername(USER_EMAIL);
-        assertNotNull(currentUser);
+        CurrentUser currentUser = currentUserDetailsService.loadUserByUsername(USER_LOGIN_WITH_SUBSCRIPTIONS);
+        User user = currentUser.getUser();
+        Assert.assertEquals(USER_LOGIN_WITH_SUBSCRIPTIONS, user.getLoginName());
+        Assert.assertEquals("$2a$10$WcgRF8VQ8DKt4h4Hz9pWv.6MXnIRmcPr0j9jqsseprsBwTD4w8WSm", user.getPwd());
+        Assert.assertEquals(Role.USER, user.getRole());
+        Assert.assertEquals(true, user.getEnabled());
     }
 
     @Test(expected = org.springframework.security.core.userdetails.UsernameNotFoundException.class)
     public void testLoadUserByUsernameNotFound() {
-        when(userService.getUserByLoginName(anyString())).thenReturn(Optional.empty());
-        CurrentUser currentUser = currentUserDetailsService.loadUserByUsername(USER_EMAIL);
-        assertNotNull(currentUser);
+        currentUserDetailsService.loadUserByUsername(INVALID_USER_LOGIN);
     }
 }
