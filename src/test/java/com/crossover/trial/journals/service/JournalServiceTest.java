@@ -1,9 +1,5 @@
 package com.crossover.trial.journals.service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
 import com.crossover.trial.journals.IntegrationTestBase;
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
@@ -12,6 +8,9 @@ import com.crossover.trial.journals.repository.PublisherRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 

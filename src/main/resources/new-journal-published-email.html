@@ -1,5 +1,3 @@
-<!-- FIXME: move to templatre folder -->
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:remove="all">Journals notification</title>
@@ -10,7 +8,7 @@
 Hello <span th:text="${user.loginName}">XXXX</span>
 </p>
 <p>
-A new journal called <span th:text="${journal.name}">XXXX</span> has been published on <span th:text="${#dates.format(publishDate)}">XXXX</span> by <span th:text="${journal.publisher}">XXXX</span> in category <span th:text="${journal.category}">XXXX</span>
+A new journal called <span th:text="${journal.name}">XXXX</span> has been published on <span th:text="${#dates.format(journal.publishDate, 'MMMM dd, yyyy')}">XXXX</span> by <span th:text="${journal.publisher.name}">XXXX</span> in category <span th:text="${journal.category.name}">XXXX</span>
 </p>
 <p>
     Regards, <br />
