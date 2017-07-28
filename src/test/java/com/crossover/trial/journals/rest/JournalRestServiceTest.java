@@ -152,9 +152,21 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
                 .andExpect(status().is(HttpStatus.OK.value()))
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$[0].id", is(3)))
-                .andExpect(jsonPath("$[0].name", is("endocrinology")));
-                //TODO check active field
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].name", is("immunology")))
+                .andExpect(jsonPath("$[0].active", is(false)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].name", is("pathology")))
+                .andExpect(jsonPath("$[1].active", is(false)))
+                .andExpect(jsonPath("$[2].id", is(3)))
+                .andExpect(jsonPath("$[2].name", is("endocrinology")))
+                .andExpect(jsonPath("$[2].active", is(true)))
+                .andExpect(jsonPath("$[3].id", is(4)))
+                .andExpect(jsonPath("$[3].name", is("microbiology")))
+                .andExpect(jsonPath("$[3].active", is(false)))
+                .andExpect(jsonPath("$[4].id", is(5)))
+                .andExpect(jsonPath("$[4].name", is("neurology")))
+                .andExpect(jsonPath("$[4].active", is(false)));
     }
 
     @Test
@@ -164,6 +176,20 @@ public class JournalRestServiceTest extends MvcIntegrationTestBase {
                 .principal(new UsernamePasswordAuthenticationToken(currentUser, "test")))
                 .andExpect(status().is(HttpStatus.OK.value()))
                 .andExpect(content().contentType(contentType))
-                .andExpect(content().string("[]"));
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].name", is("immunology")))
+                .andExpect(jsonPath("$[0].active", is(false)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].name", is("pathology")))
+                .andExpect(jsonPath("$[1].active", is(false)))
+                .andExpect(jsonPath("$[2].id", is(3)))
+                .andExpect(jsonPath("$[2].name", is("endocrinology")))
+                .andExpect(jsonPath("$[2].active", is(false)))
+                .andExpect(jsonPath("$[3].id", is(4)))
+                .andExpect(jsonPath("$[3].name", is("microbiology")))
+                .andExpect(jsonPath("$[3].active", is(false)))
+                .andExpect(jsonPath("$[4].id", is(5)))
+                .andExpect(jsonPath("$[4].name", is("neurology")))
+                .andExpect(jsonPath("$[4].active", is(false)));
     }
 }

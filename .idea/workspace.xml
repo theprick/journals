@@ -1,38 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="374cddf8-7b53-474c-bb6c-f2da145c674a" name="Default" comment="- Multiple fixes and features added.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/config/ActiveMQConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/dto/JournalDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/dto/JournalsJmsMessageDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/dto/UserDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/jms/JmsMessageConsumer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/MySSLSocketFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/MyTrustManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/timer/DailyDigestTimerTask.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/journals.iml" afterPath="$PROJECT_DIR$/journals.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/Application.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/controller/PublisherController.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/controller/PublisherController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/repository/SubscriptionRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/repository/SubscriptionRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalService.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailComposer.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailComposer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailService.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/daily-digest-email.html" afterPath="$PROJECT_DIR$/src/main/resources/daily-digest-email.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/data.sql" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/new-journal-published-email.html" afterPath="$PROJECT_DIR$/src/main/resources/new-journal-published-email.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/repository/SubscriptionRepositoryTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/repository/SubscriptionRepositoryTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/service/email/EmailServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/service/email/EmailServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/service/email/WiserAssertions.java" afterPath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/service/email/WiserAssertions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/expected-daily-digest-email.html" afterPath="$PROJECT_DIR$/src/test/resources/expected-daily-digest-email.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/expected-new-journal-published-email.html" afterPath="$PROJECT_DIR$/src/test/resources/expected-new-journal-published-email.html" />
+    <list default="true" id="374cddf8-7b53-474c-bb6c-f2da145c674a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path=".idea/" />
@@ -57,56 +29,10 @@
       <file leaf-file-name="DailyDigestTimerTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/timer/DailyDigestTimerTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="33" column="62" lean-forward="false" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
+            <state relative-caret-position="595">
+              <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Scheduled.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.5.RELEASE/spring-context-4.2.5.RELEASE-sources.jar!/org/springframework/scheduling/annotation/Scheduled.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="86" column="27" lean-forward="false" selection-start-line="86" selection-start-column="11" selection-end-line="86" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#4110#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JournalService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JournalServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="94" column="25" lean-forward="false" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryRestService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/CategoryRestService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding>
-                <element signature="e#604#605#0" expanded="true" />
-                <element signature="e#647#648#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,8 +41,28 @@
       <file leaf-file-name="JournalRestService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state relative-caret-position="290">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JournalRestServiceTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="168" column="54" lean-forward="true" selection-start-line="168" selection-start-column="54" selection-end-line="168" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-test.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-test.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,6 +73,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="55" lean-forward="false" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JournalController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/controller/JournalController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-143">
+              <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -154,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDTO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserDTO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/dto/UserDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+            <state relative-caret-position="372">
+              <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -211,8 +177,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/service/CurrentUserDetailsServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/controller/JournalControllerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/TestConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/IntegrationTestBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailCreator.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application-test.properties" />
@@ -253,6 +217,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/timer/DailyDigestTimerTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java" />
       </list>
     </option>
   </component>
@@ -853,6 +819,22 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="402" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="401" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="402" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="401" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="184" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="171" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="263" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="988" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -871,33 +853,7 @@
       <recent name="D:\Projects\CrossoverTrial - Second\Code\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
-    <configuration default="false" name="EmailServiceTest.testSendNewJurnalPublishedEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.crossover.trial.journals.service.email.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="journals" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.crossover.trial.journals.service.email" />
-      <option name="MAIN_CLASS_NAME" value="com.crossover.trial.journals.service.email.EmailServiceTest" />
-      <option name="METHOD_NAME" value="testSendNewJurnalPublishedEmail" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.JournalRestServiceTest.testGetUserSubscriptions">
     <configuration default="false" name="EmailServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -994,6 +950,32 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="journals" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="JournalRestServiceTest.testGetUserSubscriptions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.crossover.trial.journals.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="journals" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.crossover.trial.journals.rest" />
+      <option name="MAIN_CLASS_NAME" value="com.crossover.trial.journals.rest.JournalRestServiceTest" />
+      <option name="METHOD_NAME" value="testGetUserSubscriptions" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1223,19 +1205,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.EmailServiceTest.testSendNewJurnalPublishedEmail" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.EmailServiceTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest.testFindByCategoryId" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Application" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.EmailServiceTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest.testFindByCategoryId" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Application" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.JournalRestServiceTest.testGetUserSubscriptions" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Application" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest.testFindByCategoryId" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.EmailServiceTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.EmailServiceTest.testSendNewJurnalPublishedEmail" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.JournalRestServiceTest.testGetUserSubscriptions" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Application" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest.testFindByCategoryId" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SubscriptionRepositoryTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.EmailServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1299,13 +1281,17 @@
       <option name="project" value="LOCAL" />
       <updated>1500227671436</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="- Multiple fixes and features added.">
+      <created>1501271364221</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1501271364221</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EmailServiceTest - 2017.07.16 at 20h 35m 45s.xml">
-      <configuration name="EmailServiceTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="EmailServiceTest - 2017.07.16 at 20h 37m 59s.xml">
       <configuration name="EmailServiceTest" configurationId="JUnit" />
     </history-entry>
@@ -1323,6 +1309,9 @@
     </history-entry>
     <history-entry file="EmailServiceTest_testSendNewJurnalPublishedEmail - 2017.07.16 at 20h 16m 34s.xml">
       <configuration name="EmailServiceTest.testSendNewJurnalPublishedEmail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="JournalRestServiceTest_testGetUserSubscriptions - 2017.07.28 at 23h 11m 38s.xml">
+      <configuration name="JournalRestServiceTest.testGetUserSubscriptions" configurationId="JUnit" />
     </history-entry>
     <history-entry file="SubscriptionRepositoryTest - 2017.07.27 at 22h 47m 25s.xml">
       <configuration name="SubscriptionRepositoryTest" configurationId="JUnit" />
@@ -1497,11 +1486,17 @@
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="32" />
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -1514,25 +1509,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/activemq/activemq-client/5.12.3/activemq-client-5.12.3-sources.jar!/org/apache/activemq/ActiveMQConnectionFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
-          <folding>
-            <element signature="e#2857#3233#0" expanded="false" />
-            <element signature="e#3232#3233#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jms/4.2.5.RELEASE/spring-jms-4.2.5.RELEASE-sources.jar!/org/springframework/jms/support/converter/MessagingMessageConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jms/4.2.5.RELEASE/spring-jms-4.2.5.RELEASE-sources.jar!/org/springframework/jms/support/converter/MessageConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -1797,22 +1773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-test.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/email/EmailServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -1882,16 +1842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/timer/DailyDigestTimerTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="33" column="62" lean-forward="false" selection-start-line="33" selection-start-column="62" selection-end-line="33" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/service/JournalService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1916,14 +1866,6 @@
             <element signature="e#604#605#0" expanded="true" />
             <element signature="e#647#648#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1955,8 +1897,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/dto/UserDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+        <state relative-caret-position="372">
+          <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/timer/DailyDigestTimerTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/controller/JournalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/trial/journals/rest/JournalRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/trial/journals/rest/JournalRestServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="168" column="54" lean-forward="true" selection-start-line="168" selection-start-column="54" selection-end-line="168" selection-end-column="54" />
           <folding />
         </state>
       </provider>

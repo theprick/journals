@@ -76,8 +76,17 @@ public class JournalRestService {
 	@RequestMapping(value = "/subscriptions")
 	public List<SubscriptionDTO> getUserSubscriptions(@AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-		List<Subscription> subscriptions = activeUser.getUser().getSubscriptions();
-		return subscriptions.stream().map( s -> new SubscriptionDTO(s.getCategory())).collect(Collectors.toList());
+		User persistedUser = userService.findById(activeUser.getId());
+		List<Subscription> subscriptions = persistedUser.getSubscriptions();
+		List<Category> categories = categoryRepository.findAll();
+		List<SubscriptionDTO> subscriptionDTOs = new ArrayList<>(categories.size());
+		categories.stream().forEach(c -> {
+			SubscriptionDTO subscr = new SubscriptionDTO(c);
+			Optional<Subscription> subscription = subscriptions.stream().filter(s -> s.getCategory().getId().equals(c.getId())).findFirst();
+			subscr.setActive(subscription.isPresent());
+			subscriptionDTOs.add(subscr);
+		});
+		return subscriptionDTOs;
 	}
 
 	@RequestMapping(value = "/subscribe/{categoryId}", method = RequestMethod.POST)
