@@ -16,6 +16,7 @@ import com.crossover.trial.journals.repository.CategoryRepository;
 import com.crossover.trial.journals.repository.UserRepository;
 import com.crossover.trial.journals.model.Subscription;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -88,5 +89,11 @@ public class JournalServiceImpl implements JournalService {
 			throw new ServiceException("Journal cannot be removed");
 		}
 		journalRepository.delete(journal);
+	}
+
+	@Override
+	public List<Journal> getJournalsPublishedInTheLast24Hours() {
+        DateTime now = new DateTime();
+        return journalRepository.findByPublicationDate(now.toDate(), now.minusHours(24).toDate());
 	}
 }

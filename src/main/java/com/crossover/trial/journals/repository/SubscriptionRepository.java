@@ -15,4 +15,6 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     List<Subscription> findByCategory(Category category);
 
     List<Subscription> findByUserAndCategoryId(User user, long categoryId);
+
+    List<Subscription> findByCategoryId(Long categoryId);
 }

@@ -25,7 +25,9 @@ public class WiserAssertions {
 
     public void assertMessage(String from, String to, String subject, String content, String contentType) {
         WiserMessage message = messages.stream().filter(m -> m.getEnvelopeSender().equals(from))
-                .findFirst().orElseThrow(assertionError("No mail message from {0} found", from));
+                .findFirst().orElseThrow(assertionError(
+                        "No mail message from {0}, to {1}, subject {2}, contentType {3} and content {4} found",
+                        from, to, subject, contentType, content));
 
         Assert.assertEquals(to, message.getEnvelopeReceiver());
         try {

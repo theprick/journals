@@ -1,6 +1,8 @@
 package com.crossover.trial.journals.service.email;
 
 import com.crossover.trial.journals.IntegrationTestBase;
+import com.crossover.trial.journals.dto.JournalDTO;
+import com.crossover.trial.journals.dto.UserDTO;
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.model.User;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class EmailServiceTest extends IntegrationTestBase {
 
@@ -54,12 +57,14 @@ public class EmailServiceTest extends IntegrationTestBase {
         User user = getUser(USER_LOGIN_WITH_SUBSCRIPTIONS);
         Journal journal = journalRepository.findOne(JOURNAL_ID_MEDICINE);
 
-        emailService.sendNewJurnalPublishedEmail(user, journal);
+        emailService.sendNewJurnalPublishedEmail(new UserDTO(user.getLoginName()),
+                new JournalDTO(journal.getName(), journal.getPublishDate(),
+                        journal.getPublisher().getName(), journal.getCategory().getName()));
 
         WiserAssertions.assertReceivedMessage(wiser).assertMessage(
                 FROM,
                 USER_LOGIN_WITH_SUBSCRIPTIONS,
-                "New journal has been published in " + journal.getCategory(),
+                "New journal has been published in " + journal.getCategory().getName(),
                 getExpectedEmailContent("expected-new-journal-published-email.html"),
                 "text/html; charset=utf-8");
     }
@@ -88,7 +93,13 @@ public class EmailServiceTest extends IntegrationTestBase {
         Assert.assertTrue(publisher1.isPresent());
 
         List<Journal> journals = journalRepository.findByPublisher(publisher1.get());
-        emailService.sendDailyDigestEmail(user, journals);
+        emailService.sendDailyDigestEmail(new UserDTO(user.getLoginName()),
+                journals.stream().map(
+                        journal -> new JournalDTO(journal.getName(),
+                                journal.getPublishDate(),
+                                journal.getPublisher().getName(),
+                                journal.getCategory().getName())
+                ).collect(Collectors.toList()));
 
         WiserAssertions.assertReceivedMessage(wiser).assertMessage(
                 FROM,

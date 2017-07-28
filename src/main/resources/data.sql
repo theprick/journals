@@ -23,4 +23,4 @@ INSERT INTO subscription(id, user_id, category_id, date) VALUES(1, 3, 3, NOW());
 
 --valexe54321@gmail.com password is user1
 --mstroe76@gmail.com password is user2
---publisher3 password publisher1
+--publisher3 password is publisher1

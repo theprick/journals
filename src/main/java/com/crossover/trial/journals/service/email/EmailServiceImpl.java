@@ -1,5 +1,7 @@
 package com.crossover.trial.journals.service.email;
 
+import com.crossover.trial.journals.dto.JournalDTO;
+import com.crossover.trial.journals.dto.UserDTO;
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.User;
 import com.crossover.trial.journals.service.ServiceException;
@@ -50,7 +52,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${mail.smtp.from}")
     private String from;
 
-    public void sendNewJurnalPublishedEmail(User user, Journal journal) {
+    public void sendNewJurnalPublishedEmail(UserDTO user, JournalDTO journal) {
         try {
             Session session = createSession();
 
@@ -58,7 +60,7 @@ public class EmailServiceImpl implements EmailService {
             msg.setFrom(new InternetAddress(from));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getLoginName()));
             //FIXME this should not be hardcoded
-            msg.setSubject("New journal has been published in " + journal.getCategory());
+            msg.setSubject("New journal has been published in " + journal.getCategoryName());
 
             String content = EmailComposer.createNewJournaPublishedNotificationMail(user, journal);
             msg.setText(content, "utf-8", "html");
@@ -72,7 +74,7 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    public void sendDailyDigestEmail(User user, List<Journal> journals) {
+    public void sendDailyDigestEmail(UserDTO user, List<JournalDTO> journals) {
         try {
             Session session = createSession();
 

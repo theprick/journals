@@ -89,4 +89,30 @@ public class User {
 	public void setSubscriptions(List<Subscription> subscriptions) {
 		this.subscriptions = subscriptions;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		if (!id.equals(user.id)) return false;
+		if (loginName != null ? !loginName.equals(user.loginName) : user.loginName != null) return false;
+		if (pwd != null ? !pwd.equals(user.pwd) : user.pwd != null) return false;
+		if (enabled != null ? !enabled.equals(user.enabled) : user.enabled != null) return false;
+		if (role != user.role) return false;
+		return subscriptions != null ? subscriptions.equals(user.subscriptions) : user.subscriptions == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id.hashCode();
+		result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+		result = 31 * result + (pwd != null ? pwd.hashCode() : 0);
+		result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
+		result = 31 * result + (role != null ? role.hashCode() : 0);
+		result = 31 * result + (subscriptions != null ? subscriptions.hashCode() : 0);
+		return result;
+	}
 }

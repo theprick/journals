@@ -1,5 +1,7 @@
 package com.crossover.trial.journals.service.email;
 
+import com.crossover.trial.journals.dto.JournalDTO;
+import com.crossover.trial.journals.dto.UserDTO;
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.User;
 import org.apache.log4j.Logger;
@@ -17,7 +19,7 @@ public final class EmailComposer {
     public static final String NEW_JOURNAL_PUBLISHED_EMAIL_TEMPLATE = "new-journal-published-email";
     private static final String DAILY_DIGEST_EMAIL_TEMPLATE = "daily-digest-email";
 
-    public static String createNewJournaPublishedNotificationMail(User user, Journal journal) {
+    public static String createNewJournaPublishedNotificationMail(UserDTO user, JournalDTO journal) {
         LOG.debug("Create new publication notification mail for " +  user.getLoginName());
         SpringTemplateEngine templateEngine = setupTemplateEngine();
 
@@ -31,7 +33,7 @@ public final class EmailComposer {
         return writer.toString();
     }
 
-    public static String createDailyDigestMail(User user, List<Journal> journals) {
+    public static String createDailyDigestMail(UserDTO user, List<JournalDTO> journals) {
         LOG.debug("Create daily digest mail for " +  user.getLoginName());
         SpringTemplateEngine templateEngine = setupTemplateEngine();
 

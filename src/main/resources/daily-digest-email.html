@@ -18,15 +18,15 @@
     </tr>
     <tr th:each="journal : ${journals}">
         <td th:text="${journal.name}">Onions</td>
-        <td th:text="${journal.publisher.name}">Onions</td>
-        <td th:text="${journal.category.name}">Onions</td>
+        <td th:text="${journal.publisherName}">Onions</td>
+        <td th:text="${journal.categoryName}">Onions</td>
         <td th:text="${#dates.format(journal.publishDate, 'MMMM dd, yyyy')}">Onions</td>
     </tr>
 </table>
 </p>
 <p>
     Regards, <br />
-    <em>The Crossover Team</em>
+    <em>The Medical Journals Team</em>
 </p>
 </body>
 </html>

@@ -4,13 +4,19 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.crossover.trial.journals.dto.JournalsJmsMessageDTO;
 import com.crossover.trial.journals.model.Journal;
+import com.crossover.trial.journals.model.Subscription;
+import com.crossover.trial.journals.repository.SubscriptionRepository;
 import com.crossover.trial.journals.service.JournalService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -37,7 +43,16 @@ public class PublisherController {
 	private PublisherRepository publisherRepository;
 
 	@Autowired
+	private SubscriptionRepository subscriptionRepository;
+
+	@Autowired
 	private JournalService journalService;
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	@Value("${journals.activemq.queue.new-publication}")
+    private String newPublicationQueue;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/publisher/publish")
 	public String provideUploadInfo(Model model) {
@@ -66,6 +81,14 @@ public class PublisherController {
 				journal.setUuid(uuid);
 				journal.setName(name);
 				journalService.publish(publisher.get(), journal, categoryId);
+				// send an email to all users registered to this category
+				List<Subscription> subscriptions = subscriptionRepository.findByCategoryId(categoryId);
+				subscriptions.forEach(subscription -> { jmsTemplate.convertAndSend(newPublicationQueue,
+						new JournalsJmsMessageDTO(
+								subscription.getUser(),
+								journal)
+						); }
+				);
 				return "redirect:/publisher/browse";
 			} catch (Exception e) {
 				redirectAttributes.addFlashAttribute("message",
